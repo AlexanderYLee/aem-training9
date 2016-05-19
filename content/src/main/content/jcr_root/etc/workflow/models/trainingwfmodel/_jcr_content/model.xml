@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:isCheckedOut="{Boolean}false"
+    jcr:primaryType="cq:WorkflowModel"
+    jcr:uuid="5d3351fb-179e-45f2-ac29-43744fd068d1"
+    sling:resourceType="cq/workflow/components/model"
+    description="No Description"
+    title="Training WF model">
+    <metaData
+        cq:lastModified="{Long}1463640154564"
+        cq:lastModifiedBy="admin"
+        jcr:primaryType="nt:unstructured"/>
+    <nodes jcr:primaryType="nt:unstructured">
+        <node0
+            jcr:primaryType="cq:WorkflowNode"
+            title="Start"
+            type="START">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node0>
+        <node1
+            jcr:primaryType="cq:WorkflowNode"
+            title="OR_SPLIT"
+            type="OR_SPLIT">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node1>
+        <node2
+            jcr:primaryType="cq:WorkflowNode"
+            title="OR_JOIN"
+            type="OR_JOIN">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node2>
+        <node3
+            jcr:primaryType="cq:WorkflowNode"
+            description="Path to move definition dialog"
+            title="Path to move definition dialog"
+            type="PARTICIPANT">
+            <metaData
+                jcr:primaryType="nt:unstructured"
+                DIALOG_PATH="/etc/workflow/geometrixx/dialogs/dialog"
+                PARTICIPANT="administrators"/>
+        </node3>
+        <node4
+            jcr:primaryType="cq:WorkflowNode"
+            description="A no operation process"
+            title="No Operation"
+            type="PROCESS">
+            <metaData
+                jcr:primaryType="nt:unstructured"
+                PROCESS="/etc/workflow/scripts/noop.ecma"
+                PROCESS_AUTO_ADVANCE="true"/>
+        </node4>
+        <node5
+            jcr:primaryType="cq:WorkflowNode"
+            description="Moves the page to pathToMove dir."
+            title="Moves the page to pathToMove dir."
+            type="PROCESS">
+            <metaData
+                jcr:primaryType="nt:unstructured"
+                PROCESS="com.epam.aemtraining.impl.MoveToPathProcess"
+                PROCESS_AUTO_ADVANCE="true"/>
+        </node5>
+        <node6
+            jcr:primaryType="cq:WorkflowNode"
+            title="End"
+            type="END">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node6>
+    </nodes>
+    <transitions jcr:primaryType="nt:unstructured">
+        <node0_x0023_node1
+            jcr:primaryType="cq:WorkflowTransition"
+            from="node0"
+            to="node1">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node0_x0023_node1>
+        <node1_x0023_node3
+            jcr:primaryType="cq:WorkflowTransition"
+            from="node1"
+            rule="/etc/workflow/scripts/geometrixx/check_ifPathToMoveExists.ecma"
+            to="node3">
+            <metaData
+                jcr:primaryType="nt:unstructured"
+                isDefault="false"/>
+        </node1_x0023_node3>
+        <node3_x0023_node2
+            jcr:primaryType="cq:WorkflowTransition"
+            from="node3"
+            to="node2">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node3_x0023_node2>
+        <node1_x0023_node4
+            jcr:primaryType="cq:WorkflowTransition"
+            from="node1"
+            rule="function check(){&#xa;  return ture;&#xa;}"
+            to="node4">
+            <metaData
+                jcr:primaryType="nt:unstructured"
+                isDefault="false"/>
+        </node1_x0023_node4>
+        <node4_x0023_node2
+            jcr:primaryType="cq:WorkflowTransition"
+            from="node4"
+            to="node2">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node4_x0023_node2>
+        <node2_x0023_node5
+            jcr:primaryType="cq:WorkflowTransition"
+            from="node2"
+            rule=""
+            to="node5">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node2_x0023_node5>
+        <node5_x0023_node6
+            jcr:primaryType="cq:WorkflowTransition"
+            from="node5"
+            to="node6">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node5_x0023_node6>
+    </transitions>
+</jcr:root>

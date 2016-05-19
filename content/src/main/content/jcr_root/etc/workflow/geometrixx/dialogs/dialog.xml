@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Dialog"
+    title="Path to move dialog"
+    touchUiDialogPath="/etc/workflow/geometrixx/dialogs/cq:dialog"
+    xtype="dialog">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <path
+            jcr:primaryType="cq:Widget"
+            allowBlank="{Boolean}false"
+            defaultValue="/content/geometrixx"
+            fieldLabel="Path to move"
+            name="./jcr:content/pathToMove"
+            rootPath="/content/geometrixx"
+            showTitlesInTree="{Boolean}false"
+            xtype="pathfield"/>
+    </items>
+</jcr:root>

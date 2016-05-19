@@ -1,0 +1,23 @@
+function check() {
+    log.debug("If path to move exists check. Payload type is " + workflowData.getPayloadType());
+
+    if (workflowData.getPayloadType() == "JCR_PATH") {
+        var path = workflowData.getPayload().toString() + "/jcr:content";
+        var retVal = true;
+        if (path.indexOf("/content/geometrixx") != -1) {
+            var node = workflowSession.getSession().getItem(path);
+            var resourceResolverFactory = sling.getService(Packages.org.apache.sling.jcr.resource.JcrResourceResolverFactory);
+            var resolver = resourceResolverFactory.getResourceResolver(workflowSession.getSession());
+            var res = resolver.getResource(path);
+            var node = res.adaptTo(Packages.javax.jcr.Node);
+            if(node.hasProperty("pathToMove")){
+                retVal = false;
+            }
+        }
+        log.debug("isPathToMovePresent:" + retVal + " (" +  path + ")");
+        return retVal;
+    } else {
+        // should not happen
+        return true;
+    }
+}

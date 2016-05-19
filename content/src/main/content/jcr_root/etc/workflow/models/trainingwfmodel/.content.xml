@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:designPath="/etc/designs/default"
+        cq:lastModified="{Date}2016-05-19T09:42:13.066+03:00"
+        cq:lastModifiedBy="admin"
+        cq:template="/libs/cq/workflow/templates/model"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Training WF model"
+        sling:resourceType="cq/workflow/components/pages/model">
+        <flow
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="foundation/components/parsys">
+            <or
+                jcr:created="{Date}2016-05-18T17:49:47.819+03:00"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2016-05-19T08:50:35.491+03:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="cq/workflow/components/model/or"
+                branches="2"
+                orSplit="true"
+                script2="function check(){&#xa;  return ture;&#xa;}"
+                scriptPath1="/etc/workflow/scripts/geometrixx/check_ifPathToMoveExists.ecma">
+                <_x0031_
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="cq/flow/components/parsys">
+                    <dialog
+                        jcr:created="{Date}2016-05-18T18:02:05.786+03:00"
+                        jcr:createdBy="admin"
+                        jcr:description="Path to move definition dialog"
+                        jcr:lastModified="{Date}2016-05-19T09:20:14.878+03:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Path to move definition dialog"
+                        sling:resourceType="cq/workflow/components/model/dialog">
+                        <metaData
+                            jcr:primaryType="nt:unstructured"
+                            DIALOG_PATH="/etc/workflow/geometrixx/dialogs/dialog"
+                            PARTICIPANT="administrators"/>
+                    </dialog>
+                </_x0031_>
+                <_x0032_
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="cq/flow/components/parsys">
+                    <noopprocess
+                        jcr:created="{Date}2016-05-18T17:55:01.253+03:00"
+                        jcr:createdBy="admin"
+                        jcr:description="A no operation process"
+                        jcr:lastModified="{Date}2016-05-18T17:55:01.253+03:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="No Operation"
+                        sling:resourceType="cq/workflow/components/workflow/noopprocess">
+                        <metaData
+                            jcr:primaryType="nt:unstructured"
+                            PROCESS="/etc/workflow/scripts/noop.ecma"
+                            PROCESS_AUTO_ADVANCE="true"/>
+                    </noopprocess>
+                </_x0032_>
+            </or>
+            <process
+                jcr:created="{Date}2016-05-18T17:52:02.283+03:00"
+                jcr:createdBy="admin"
+                jcr:description="Moves the page to pathToMove dir."
+                jcr:lastModified="{Date}2016-05-19T09:42:13.060+03:00"
+                jcr:lastModifiedBy="admin"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Moves the page to pathToMove dir."
+                sling:resourceType="cq/workflow/components/model/process">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    PROCESS="com.epam.aemtraining.impl.MoveToPathProcess"
+                    PROCESS_AUTO_ADVANCE="true"/>
+            </process>
+        </flow>
+        <model/>
+    </jcr:content>
+</jcr:root>

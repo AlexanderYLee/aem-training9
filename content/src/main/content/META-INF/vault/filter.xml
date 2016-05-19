@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/aem-training9"/>
+    <filter root="/apps/geometrixx/components/homepage/cq:dialog"/>
+    <filter root="/etc/workflow/geometrixx/dialogs"/>
+    <filter root="/etc/workflow/scripts/geometrixx"/>
+    <filter root="/etc/workflow/models/trainingwfmodel"/>
+</workspaceFilter>
