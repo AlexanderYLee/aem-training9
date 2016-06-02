@@ -21,6 +21,7 @@ import static com.day.cq.dam.commons.process.AbstractAssetWorkflowProcess.TYPE_J
 /**
  *
  * Created by Aliaksandr_Li on 5/19/2016.
+ * new branch
  */
 @Component
 @Service(WorkflowProcess.class)
